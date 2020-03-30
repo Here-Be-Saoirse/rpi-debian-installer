@@ -13,7 +13,7 @@ The user interface was stolen in part from the [OpenBSD](https://openbsd.org/) i
 * the `qemu-user-binfmt` (Debian) or `binfmt-qemu-static-all-arch (AUR)` (on Arch Linux) packages.
 
 ### Usage
-Simply run `./installer.sh`. You can alternatively run `./installer.sh verbose` to see more info about dependancy checks.
+Simply run `./installer.sh`. You can alternatively run `./installer.sh verbose` to see more info about dependancy checks. This will install a telnetd daemon as a backup connectivity method if ssh is not working, though this is rare.
 
 ### License
 This software is licensed under the GNU General Public License (version 3) and is copyright (C) 2020 Saoirse Ó Catháin.

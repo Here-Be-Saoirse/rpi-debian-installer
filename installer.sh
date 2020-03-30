@@ -140,6 +140,10 @@ chroot /mnt apt update -yq
 chroot /mnt apt upgrade -yq
 chroot /mnt apt install console-setup keyboard-configuration sudo ssh curl wget dbus usbutils ca-certificates crda less fbset debconf-utils avahi-daemon fake-hwclock nfs-common apt-utils man-db pciutils ntfs-3g apt-listchanges -yq
 chroot /mnt apt install wpasupplicant wireless-tools firmware-atheros firmware-brcm80211 firmware-libertas firmware-misc-nonfree firmware-realtek dhcpcd5 net-tools -yq
+if [[ ${RUNMODE} = debug ]]; then
+chroot /mnt apt install telnetd
+fi
+
 echo -e "${INSTALLER_ROOTPW}\n${INSTALLER_ROOTPW}" | chroot /mnt passwd root
 if [[ ! ${SKIP_USER} = 1 ]]; then
 chroot /mnt /usr/sbin/useradd --create-home --user-group ${INSTALLER_USER_NAME}
@@ -215,7 +219,7 @@ fi
 ## Copyright (C) 2020 - Saoirse Ó Catháin
 ## version 1.0
 progressorhash() {
-if [[ ${RUNMODE} = verbose ]]; then
+if [[ ${RUNMODE} = debug ]]; then
 printf "$@"
 else
 printf " # "
