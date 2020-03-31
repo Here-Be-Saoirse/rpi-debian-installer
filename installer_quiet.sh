@@ -149,18 +149,29 @@ echo "dwc_otg.lpm_enable=0 console=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0
 printf ' done.\n'
 printf 'Preparing the system: '
 chroot /mnt /debootstrap/debootstrap --second-stage >/dev/null
+printf ' done.\n'
+printf 'Checking for updates: '
 
 chroot /mnt apt update -yq >/dev/null
+printf ' done.\n'
+printf 'Installing updates: '
 
 chroot /mnt apt upgrade -yq >/dev/null
+printf ' done.\n'
+printf 'Installing additional packages: '
 
-chroot /mnt apt install console-setup keyboard-configuration sudo ssh curl wget dbus usbutils ca-certificates crda less fbset debconf-utils avahi-daemon fake-hwclock nfs-common apt-utils man-db pciutils ntfs-3g apt-listchanges -yq >/dev/null
+chroot /mnt apt install sudo ssh curl wget dbus usbutils ca-certificates crda less fbset debconf-utils avahi-daemon fake-hwclock nfs-common apt-utils man-db pciutils ntfs-3g apt-listchanges -yq >/dev/null
+printf ' done.\n'
+printf 'Installing firmware: '
 
 chroot /mnt apt install wpasupplicant wireless-tools firmware-atheros firmware-brcm80211 firmware-libertas firmware-misc-nonfree firmware-realtek dhcpcd5 net-tools -yq >/dev/null
-if [[ ${RUNMODE} = debug ]]; then
-chroot /mnt apt install telnetd >/dev/null
-fi
+
 printf ' done.\n'
+if [[ ${RUNMODE} = debug ]]; then
+printf '(DEBUG) installing telnet daemon: '
+chroot /mnt apt install telnetd >/dev/null
+printf ' done.\n'
+fi
 printf 'Configuring users: '
 
 echo -e "${INSTALLER_ROOTPW}\n${INSTALLER_ROOTPW}" | chroot /mnt passwd root
