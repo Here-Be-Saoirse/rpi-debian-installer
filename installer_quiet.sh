@@ -224,6 +224,7 @@ export INSTALLER_ROOT_DISK_NAME
 
 function DiskInfo() {
 for each in /dev/sd?; do parted ${each} print 2>/dev/null|head -n 2|tail -n1; parted ${each} print 2>/dev/null|head -n 1|sed -e 's/Model:\ //g'; done
+for each in /dev/mmcblk?; do parted ${each} print 2>/dev/null|head -n 2|tail -n1; parted ${each} print 2>/dev/null|head -n 1|sed -e 's/Model:\ //g'; done
 }
 
 function userpw() {
