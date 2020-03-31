@@ -121,14 +121,14 @@ dpkg-deb -x raspberrypi-bootloader_1.20190925-2_armhf.deb /tmp/pi-bootloader/
 cp /tmp/pi-bootloader/boot/* /mnt/boot/
 rm raspberrypi-bootloader_1.20190925-2_armhf.deb
 
-wget https://github.com/sakaki-/bcm2711-kernel/releases/download/4.19.93.20200107/bcm2711-kernel-4.19.93.20200107.tar.xz
+wget https://github.com/sakaki-/bcm2711-kernel-bis/releases/download/4.19.108.20200324/bcm2711-kernel-bis-4.19.108.20200324.tar.xz
 mkdir /tmp/pi-kernel
-tar xf bcm2711-kernel-4.19.93.20200107.tar.xz -C /tmp/pi-kernel/
+tar xf bcm2711-kernel-bis-4.19.108.20200324.tar.xz -C /tmp/pi-kernel/
 cp -r /tmp/pi-kernel/boot/* /mnt/boot/
 mv /mnt/boot/kernel*.img /mnt/boot/kernel8.img
 mkdir /mnt/lib/modules
 cp -r /tmp/pi-kernel/lib/modules /mnt/lib/
-rm bcm2711-kernel-4.19.93.20200107.tar.xz
+rm bcm2711-kernel-bis-4.19.108.20200324.tar.xz
 rm -r /tmp/pi-kernel
 
 echo "disable_overscan=1
