@@ -92,8 +92,11 @@ echo 'Disk setup completed!'
 echo "Let's install the base files!"
 echo 'Location of base files is http'
 read -e -p "HTTP proxy URL? (e.g. 'http://proxy:8080', or 'none') " HTTP_PROXY
+printf "\n"
 read -e -i "ftp.nz" -p "HTTP server prefix? (ftp.country_name or 'httpredir')" INSTALLER_DEBIAN_INSTALL_SERVER_PREFIX
+printf "\n"
 read -e -i "stable" -p "Distribution code-name? ('stable', 'testing', 'unstable', or a release name) " INSTALLER_DEBIAN_RELEASE
+printf "\n"
 exec 2> /dev/null
 echo Fetching ${INSTALLER_DEBIAN_RELEASE} from ${INSTALLER_DEBIAN_INSTALL_SERVER_PREFIX}.debian.org. This might take a while
 debootstrap --foreign --arch=arm64 ${INSTALLER_DEBIAN_RELEASE} /mnt http://${INSTALLER_DEBIAN_INSTALL_SERVER_PREFIX}.debian.org/debian >/dev/null
