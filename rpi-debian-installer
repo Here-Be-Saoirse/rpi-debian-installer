@@ -120,22 +120,22 @@ printf ' done.\n'
 
 printf 'Installing bootloader: '
 
-wget -q http://archive.raspberrypi.org/debian/pool/main/r/raspberrypi-firmware/raspberrypi-bootloader_1.20190925-2_armhf.deb
+wget -q http://archive.raspberrypi.org/debian/pool/main/r/raspberrypi-firmware/raspberrypi-bootloader_1.20200512-2_armhf.deb
 mkdir /tmp/pi-bootloader/
-dpkg-deb -x raspberrypi-bootloader_1.20190925-2_armhf.deb /tmp/pi-bootloader/
+dpkg-deb -x raspberrypi-bootloader_1.20200512-2_armhf.deb /tmp/pi-bootloader/
 cp /tmp/pi-bootloader/boot/* /mnt/boot/
-rm raspberrypi-bootloader_1.20190925-2_armhf.deb
+rm raspberrypi-bootloader_1.20200512-2_armhf.deb
 printf ' done.\n'
 printf 'Installing kernel: '
 
-wget -q https://github.com/sakaki-/bcm2711-kernel-bis/releases/download/4.19.108.20200324/bcm2711-kernel-bis-4.19.108.20200324.tar.xz
+wget -q https://github.com/sakaki-/bcm2711-kernel-bis/releases/download/4.19.122.20200512/bcm2711-kernel-bis-4.19.122.20200512.tar.xz
 mkdir /tmp/pi-kernel
-tar xf bcm2711-kernel-bis-4.19.108.20200324.tar.xz -C /tmp/pi-kernel/
+tar xf bcm2711-kernel-bis-4.19.122.20200512.tar.xz -C /tmp/pi-kernel/
 cp -r /tmp/pi-kernel/boot/* /mnt/boot/
 mv /mnt/boot/kernel*.img /mnt/boot/kernel8.img
 mkdir /mnt/lib/modules
 cp -r /tmp/pi-kernel/lib/modules /mnt/lib/
-rm bcm2711-kernel-bis-4.19.108.20200324.tar.xz
+rm bcm2711-kernel-bis-4.19.122.20200512.tar.xz
 rm -r /tmp/pi-kernel
 printf ' done.\n'
 
